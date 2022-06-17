@@ -1,0 +1,44 @@
+{% extends 'accounts/base.html' %}
+{% block content %}
+<a href="{% url 'create-order' %}">Create</a> 
+
+<style>
+    table, th, td {
+  border: 1px solid black;
+}
+
+</style>
+<hr>
+<form method="GET">
+    {{myFilter.form}}
+    <input type="submit" name="" id="">
+</form>
+<table border="1">
+{% for order in orders %}
+
+<tr>
+    <td>{{ order.customer.name }}</td>
+    <td>{{ order.product }}</td>
+    <td>{{ order.status }}</td>
+    <td>{{ order.note }}</td>
+    <td>{{ order.date_created }}</td>
+    <td> <a href="{% url  'order' order.id %}">View</a> </td>
+    <td> <a href="{% url  'update-order' order.id %}">Update</a> </td>
+ 
+    <td><a href="{% url 'delete-order' order.id %}">Delete</a> </td>
+   
+</tr>
+{% endfor %}
+</table>
+<table>
+    {% for customer in customers %}
+    <tr>
+        <td>{{ customer.name }}</td>
+        <td>{{customer.phone }}</td>
+        <td>{{ customer.email }}</td>
+        <td><a href="{% url 'customer-create-order' customer.id %}">Create order</a></td>
+       <hr>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

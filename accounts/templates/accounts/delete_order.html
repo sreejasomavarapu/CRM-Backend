@@ -1,0 +1,8 @@
+<form method="POST" action="{% url 'delete-order' order.id %}">
+    {% csrf_token %}
+    Are you sure you want to delete order of {{order.customer.name}}?
+    <br>
+    <input type="submit" name="YES">
+    <a href="{% url 'home' %}">Cancel</a>
+
+</form>
